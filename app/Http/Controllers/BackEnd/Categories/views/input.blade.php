@@ -27,6 +27,10 @@
                                         @endforeach
                                     </select>
                                 </div>
+                                <div class="col-12 my-2 @if(!@$obj['other']) d-none" @endif" id="color">
+                                    <label class="form-label">Chọn màu</label>
+                                    <input name="other" value="{{@$obj['other']}}" type="color" class="form-control" placeholder="Chọn màu">
+                                </div>
 
                                 <div class="col-12 my-2">
                                     <label class="form-label">Danh mục cha</label>
@@ -106,6 +110,14 @@
 
         $('#type').change(function () {
             get_type();
+            let type =  $(this).val()
+            console.log(type)
+            if(type == 4){
+                $('#color').removeClass('d-none')
+            }
+            else {
+                $('#color').addClass('d-none')
+            }
         })
 
         get_type();

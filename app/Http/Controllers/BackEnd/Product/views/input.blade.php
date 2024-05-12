@@ -31,6 +31,42 @@
                                                 </select>
                                             </div>
                                         </div>
+
+
+                                        <div class="col-6 my-2">
+                                            <div class="form-group">
+                                                <label for="category">Size</label>
+                                                <select class="select2 form-control select2-multiple" name="size[]" @if(request()->get('view') == 1) disabled @endif multiple="multiple" data-placeholder="Choose ...">
+                                                    @if($size)
+                                                        @foreach($size as $item)
+                                                            <option class="ms-2" @if(isset($sizes[$item['id']])) selected @endif
+                                                            value="{{$item['id']}}">{{value_show($item['name'])}}
+                                                            </option>
+                                                        @endforeach
+                                                    @endif
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 my-2">
+                                            <div class="form-group">
+                                                <label for="category">Màu sắc</label>
+                                                <select class="select2 form-control select2-multiple" name="color[]" @if(request()->get('view') == 1) disabled @endif multiple="multiple" data-placeholder="Choose ...">
+                                                    @if($color)
+                                                        @foreach($color as $item)
+                                                            <option class="ms-2" @if(isset($colors[$item['id']])) selected @endif
+                                                            value="{{$item['id']}}">{{value_show($item['name'])}}
+                                                            </option>
+                                                        @endforeach
+                                                    @endif
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 my-2">
+                                            <div class="form-group">
+                                                <label for="brief">Mô tả ngắn</label>
+                                                <textarea id="brief" class="form-control" name="brief"> {!! @$obj['brief'] !!}</textarea>
+                                            </div>
+                                        </div>
                                         <div class="col-12 my-2">
                                             <div class="form-group">
                                                 <label for="description">Mô tả</label>
@@ -39,9 +75,8 @@
                                         </div>
                                         <div class="col-12 my-2">
                                             <div class="form-group">
-                                                <label for="category">Thể loại (Danh mục)</label>
+                                                <label for="category">Danh mục sản phẩm</label>
                                                 <select class="select2 form-control select2-multiple" name="category[]" @if(request()->get('view') == 1) disabled @endif multiple="multiple" data-placeholder="Choose ...">
-
                                                     @if($categories)
                                                         @foreach($categories as $item)
                                                             <option class="ms-2" @if(isset($cate[$item['id']])) selected @endif
@@ -60,7 +95,10 @@
                                             <label class="form-label">Giá bán</label>
                                             <input name="sell_price" value="{{@$obj['sell_price']}}" @if(request()->get('view') == 1) disabled @endif type="text" class="form-control" placeholder="Vui lòng nhập thông tin">
                                         </div>
-
+                                        <div class="col-6 my-2">
+                                            <label class="form-label">Số lượng</label>
+                                            <input name="quantity" value="{{@$obj['quantity']}}" @if(request()->get('view') == 1) disabled @endif type="number" class="form-control" placeholder="Vui lòng nhập thông tin">
+                                        </div>
 
 
                                     </div>

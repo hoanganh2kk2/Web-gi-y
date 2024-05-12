@@ -100,4 +100,13 @@ class Category extends BaseModel
     function scopeTypeProduct($query) {
         return $query->where('type', self::get_type_product());
     }
+    function scopeSize($query) {
+        return $query->where('type', self::get_type_size());
+    }
+    function scopeTag($query) {
+        return $query->where('type', self::get_type_tag());
+    }
+    function scopeColor($query) {
+        return $query->where('type', self::get_type_color());
+    }
 }

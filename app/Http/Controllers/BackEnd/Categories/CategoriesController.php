@@ -123,6 +123,13 @@ class CategoriesController extends BaseController
         $model->status = $request->get('status', 0);
         $model->type = $request->get('type');
         $model->parent_id = 0;
+        if($request->get('other') && $request->get('type') == 4){
+            $model->other = $request->get('other');
+        }
+        else{
+            $model->other = null;
+        }
+
         if($request->get('parent_id')) {
             $model->parent_id = $request->get('parent_id');
         }

@@ -104,11 +104,35 @@
                                                 <span class="ec-single-ps-title">Giá bán</span>
                                                 <span class="new-price">{{show_money($product['sell_price'])}}</span>
                                             </div>
-                                            <div class="ec-single-stoke">
-                                                <span class="ec-single-ps-title">Còn hàng</span>
-                                                <span class="ec-single-sku f-sans-serif">Mã sản phẩm: {{@$product['sku']}}</span>
+                                        </div>
+
+                                    <div class="ec-pro-variation">
+                                        <div class="ec-pro-variation-inner ec-pro-variation-size">
+                                            <span>Kích cỡ</span>
+                                            <div class="ec-pro-variation-content">
+                                                <ul>
+                                                    @foreach(@$product->size_id as $key => $value)
+                                                        <li><span>{{$value['name']}}</span></li>
+
+                                                    @endforeach
+
+                                                </ul>
                                             </div>
                                         </div>
+                                        <div class="ec-pro-variation-inner ec-pro-variation-color">
+                                            <span>Màu sắc</span>
+                                            <div class="ec-pro-variation-content">
+
+                                                <ul>
+                                                    @foreach(@$product->color_id as $key => $value)
+{{--                                                        <li class="active"><span style="background-color:{{$value['code']}}"></span></li>--}}
+                                                        <li><span style="background-color:{{$value['code']}}"></span></li>
+                                                    @endforeach
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
 
                                         <div class="ec-single-qty">
                                             <div class="qty-plus-minus">

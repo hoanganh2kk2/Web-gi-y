@@ -31,7 +31,7 @@ class HomeController extends FrontEndController
 
     function list(Request $request){
         $tpl = [];
-        $categories = Category::query()->active()->orderByDesc('id')->get();
+        $categories = Category::query()->where('type',Category::TYPE_PRODUCT)->active()->orderByDesc('id')->get();
         $catenew = $categories->take(2);
         $pluckCatenew = $catenew->pluck('id');
         $product = ProductModel::query()->active()->typeOfficial()->get();

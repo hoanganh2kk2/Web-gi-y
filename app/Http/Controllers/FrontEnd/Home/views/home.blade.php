@@ -110,6 +110,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 @endforeach
                                 @endif
                             </div>
@@ -163,7 +164,8 @@
                                                         </a>
                                                         <span class="flags">
                                                             @if($k%2 == 0)
-                                                            <span class="new">New</span>                                                            @else
+                                                            <span class="new">New</span>
+                                                            @else
                                                              <span class="sale">Sale</span>
                                                             @endif
                                                         </span>
@@ -177,16 +179,52 @@
                                                 </div>
                                                 <div class="ec-pro-content">
                                                     <h5 class="ec-pro-title f-sans-serif sp-line-1"><a href="{{get_link_product($item['slug'])}}">{{$item['name']}}</a></h5>
+
                                                     <div class="ec-pro-rat-price">
-                                                        <p class="sp-line-1">Tác giả: {{$item['writen_by']}}</p>
+                                                        <div class="ec-pro-rating">
+                                                            <i class="ecicon eci-star fill"></i>
+                                                            <i class="ecicon eci-star fill"></i>
+                                                            <i class="ecicon eci-star fill"></i>
+                                                            <i class="ecicon eci-star fill"></i>
+                                                            <i class="ecicon eci-star"></i>
+                                                        </div>
                                                         <span class="ec-price">
                                                             <span class="new-price">{{show_money($item['sell_price'])}}</span>
                                                             <span class="old-price">{{show_money($item['price'])}}</span>
                                                         </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+{{--                                                        <div class="ec-pro-color">--}}
+{{--                                                            <span class="ec-pro-opt-label">Color</span>--}}
+{{--                                                            <ul class="ec-opt-swatch ec-change-img">--}}
+{{--                                                                <li class="active"><a href="#" class="ec-opt-clr-img"--}}
+{{--                                                                                      data-src="assets/images/product-image/6_1.jpg"--}}
+{{--                                                                                      data-src-hover="assets/images/product-image/6_1.jpg"--}}
+{{--                                                                                      data-tooltip="Gray"><span--}}
+{{--                                                                                style="background-color:#e8c2ff;"></span></a></li>--}}
+{{--                                                                <li><a href="#" class="ec-opt-clr-img"--}}
+{{--                                                                       data-src="assets/images/product-image/6_2.jpg"--}}
+{{--                                                                       data-src-hover="assets/images/product-image/6_2.jpg"--}}
+{{--                                                                       data-tooltip="Orange"><span--}}
+{{--                                                                                style="background-color:#9cfdd5;"></span></a></li>--}}
+{{--                                                            </ul>--}}
+{{--                                                        </div>--}}
+{{--                                                        <div class="ec-pro-size">--}}
+{{--                                                            <span class="ec-pro-opt-label">Size</span>--}}
+{{--                                                            <ul class="ec-opt-size">--}}
+{{--                                                                <li class="active"><a href="#" class="ec-opt-sz"--}}
+{{--                                                                                      data-old="$25.00" data-new="$20.00"--}}
+{{--                                                                                      data-tooltip="Small">S</a></li>--}}
+{{--                                                                <li><a href="#" class="ec-opt-sz" data-old="$27.00"--}}
+{{--                                                                       data-new="$22.00" data-tooltip="Medium">M</a></li>--}}
+{{--                                                                <li><a href="#" class="ec-opt-sz" data-old="$30.00"--}}
+{{--                                                                       data-new="$25.00" data-tooltip="Large">X</a></li>--}}
+{{--                                                                <li><a href="#" class="ec-opt-sz" data-old="$35.00"--}}
+{{--                                                                       data-new="$30.00" data-tooltip="Extra Large">XL</a></li>--}}
+{{--                                                            </ul>--}}
+{{--                                                        </div>--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
                                         @endforeach
                                     </div>
                                     @endif

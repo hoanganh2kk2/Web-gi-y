@@ -92,4 +92,29 @@ class ProductModel extends BaseModel
         return $query->where('type', self::get_type_official());
     }
 
+    function getColorIdAttribute(){
+        $color_id = json_decode($this->attributes['color_id']);
+        $categories = Category::whereIn('id',$color_id)->get();
+        $arr = [];
+        foreach ($categories as $item){
+
+            $arr[$item->id] = [
+                'code' => $item->other,
+                'name' => $item->name,
+            ];
+        }
+        return $arr;
+    }
+
+    function getSizeIdAttribute(){
+        $size_id = json_decode($this->attributes['size_id']);
+        $categories = Category::whereIn('id',$size_id)->get();
+        $arr = [];
+        foreach ($categories as $item){
+            $arr[$item->id] = [
+                'name' => $item->name,
+            ];
+        }
+        return $arr;
+    }
 }

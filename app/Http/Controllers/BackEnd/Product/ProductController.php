@@ -40,6 +40,10 @@ class ProductController extends BaseController
     function after_input(&$tpl) {
         $tpl['status'] = BaseModel::getStatus();
         $tpl['categories'] = Category::query()->typeProduct()->get()->toArray();
+        $tpl['size'] = Category::query()->Size()->get()->toArray();
+        $tpl['tag'] = Category::query()->Tag()->get()->toArray();
+        $tpl['color'] = Category::query()->Color()->get()->toArray();
+
         if(@$tpl['obj']['category_id']) {
             $cates = json_decode($tpl['obj']['category_id']);
             if($cates) {
@@ -48,6 +52,15 @@ class ProductController extends BaseController
                 }
             }
         }
+
+        if(@$tpl['obj']['color_id']) {
+            $tpl['colors'] = $tpl['obj']['color_id'];
+        }
+        if(@$tpl['obj']['size_id']) {
+            $tpl['sizes'] = $tpl['obj']['size_id'];
+        }
+
+
     }
 
     function _query_filter(&$query, Request $request)
@@ -69,7 +82,6 @@ class ProductController extends BaseController
         $request->offsetSet('slug', $slug);
         $rules = [
             'name' => 'required|string',
-            'drive' => 'nullable|string',
             'price' => ['nullable', 'numeric',  function ($attribute, $value, $fail) use($request){
                  if($value < 0) {
                      return $fail('Giá gốc sản phẩm không hợp lệ');
@@ -80,9 +92,6 @@ class ProductController extends BaseController
                     return $fail('Giá bán sản phẩm không hợp lệ');
                 }
             }],
-            'writen_by' => 'required|string',
-            'year' => 'required|string',
-            'num_of_book' => 'numeric',
             'description' => 'nullable|string',
             'category' => 'nullable|required',
             'slug' => ['required','string', function ($attribute, $value, $fail) use($request) {
@@ -103,16 +112,13 @@ class ProductController extends BaseController
             'exists' => ':attribute không tồn tại',
         ], [
             'name' => 'Tên sản phẩm',
-            'drive' => 'Đường dẫn file nghe',
             'status' => 'Trạng thái',
             'price' => 'Giá bán',
             'sell_price' => 'Giá niêm yết',
             'slug' => 'Đường dẫn',
-            'writen_by' => 'Tác giả',
-            'year' => 'Năm phát hành',
             'description' => 'Mô tả',
             'images' => 'Hình ảnh',
-            'num_of_book' => 'Số trang sách',
+
         ]);
     }
 
@@ -122,12 +128,10 @@ class ProductController extends BaseController
         $model->status = $request->get('status', 0);
         $model->price = (int)$request->get('price');
         $model->sell_price = (int)$request->get('sell_price');
-        $model->driver = $request->get('driver');
         $model->slug = Str::slug($request->get('name'));
-        $model->writen_by = $request->get('writen_by');
         $model->description = $request->get('description');
         $model->publisher = $request->get('publisher');
-        $model->num_of_book = (int)$request->get('num_of_book',0);
+        $model->quantity = $request->get('quantity');
         if($request->get('draft')) {
             $model->type = 0;
         }else{
@@ -136,9 +140,18 @@ class ProductController extends BaseController
         if(!$request->get('id')) {
             $model->sku = generate_product_code();
         }
-        $model->year = $request->get('year');
+
+        if($request->get('brief')) {
+            $model->brief = $request->get('brief');
+        }
         if($request->get('category')) {
             $model->category_id = json_encode($request->get('category'));
+        }
+        if($request->get('size')) {
+            $model->size_id = json_encode($request->get('size'));
+        }
+        if($request->get('color')) {
+            $model->color_id = json_encode($request->get('color'));
         }
         if($request->get('check_off')) {
             $model->check_off = 1;
@@ -149,44 +162,9 @@ class ProductController extends BaseController
             $model->media =  json_encode($request->get('media'));
         }
 
-        if($request->get('images_c')) {
-            $model->avatar = $request->get('images_c');
-        }
-
         if ($request->file('images')){
             $images = $this->upload->upload('images', true);
             $model->avatar = $images['media']['relative_link'];
-        }
-
-        $seo = [];
-        if($request->get('seo_images_c')) {
-            $seo['images'] = $request->get('seo_images_c');
-        }
-
-        if ($request->file('seo_images')){
-            $images = $this->upload->upload('seo_images', true);
-            $seo['images'] = $images['media']['relative_link'];
-        }
-
-        if ($request->get('seo_keyword')){
-            $seo['keyword'] = $request->get('seo_keyword');
-        }
-
-        if ($request->get('seo_keyword_extra')){
-            $seo['keyword_extra'] = $request->get('seo_keyword_extra');
-        }
-
-
-        if ($request->get('seo_title')){
-            $seo['title'] = $request->get('seo_title');
-        }
-
-        if ($request->get('seo_description')){
-            $seo['description'] = $request->get('seo_description');
-        }
-
-        if($seo) {
-            $model->seo = json_encode($seo);
         }
     }
 

@@ -42,8 +42,7 @@ class ProductController extends FrontEndController
             $seo = $product['seo'];
             set_seo($seo);
             $this->seo()->addImages(show_img(@$product['avatar']));
-            $comments = Comment::query()->where('product_id', $product['id'])->get();
-            $comments = Comment::query()->where('product_id', $product['id'])->get();
+            $comments = Comment::query()->where('product_id', $product['id'])->get();$a =$product->size_id;
             $star = 0;
             foreach ($comments as $comment){
                 $star =  $star + $comment['star'];
