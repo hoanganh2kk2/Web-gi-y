@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\BackEnd\Order\OrderController;
 use App\Models\Customer;
+use App\Models\Orders;
 use App\Models\Post;
 use App\Models\ProductModel;
 use App\Models\Statics;
@@ -32,6 +34,7 @@ class HomeController extends Controller
 //        $count_post = Post::query()->count();
         $count_customer = Customer::query()->count();
         $count_product = ProductModel::query()->count();
+        $count_product = Orders::query()->with('order_item')->count();
 //        $tpl['count_post'] = $count_post;
         $tpl['count_customer'] = $count_customer;
         $tpl['count_product'] = $count_product;

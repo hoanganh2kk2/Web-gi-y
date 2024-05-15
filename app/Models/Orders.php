@@ -7,6 +7,12 @@ class Orders extends BaseModel
     protected $table = 'orders';
     public $timestamps = false;
 
+
+    function order_item(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
+        return $this->hasOne(self::class, 'id', 'order_id');
+    }
+
     function city(): \Illuminate\Database\Eloquent\Relations\HasOne
     {
         return $this->hasOne(City::class, 'id', 'city_id');

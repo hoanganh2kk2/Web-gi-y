@@ -221,10 +221,10 @@
 {{--                                                                       data-new="$30.00" data-tooltip="Extra Large">XL</a></li>--}}
 {{--                                                            </ul>--}}
 {{--                                                        </div>--}}
-{{--                                                    </div>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         @endforeach
                                     </div>
                                     @endif

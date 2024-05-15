@@ -8,8 +8,8 @@
                     <!-- Ec Header Logo Start -->
                     <div class="align-self-center">
                         <div class="header-logo">
-                            <a href="index.html"><img src="assets/images/logo/logo-9.png" alt="Site Logo" /><img
-                                        class="dark-logo" src="assets/images/logo/dark-logo-8.png" alt="Site Logo"
+                            <a href="{{route('fe.home')}}"><img src="{{asset('assets/images/logo.png')}}" alt="Site Logo" /><img
+                                        class="dark-logo" src="{{asset('assets/images/logo.png')}}" alt="Site Logo"
                                         style="display: none;" /></a>
                         </div>
                     </div>
@@ -19,7 +19,7 @@
                     <div class="align-self-center">
                         <div class="header-search">
                             <form class="ec-btn-group-form" action="#">
-                                <input class="form-control" placeholder="Enter Your Product Name..." type="text">
+                                <input class="form-control" placeholder="Tìm kiếm thông tin ..." type="text">
                                 <button class="submit" type="submit"><i class="fi-rr-search"></i></button>
                             </form>
                         </div>
@@ -29,32 +29,40 @@
                     <!-- Ec Header Button Start -->
                     <div class="align-self-center">
                         <div class="ec-header-bottons">
-
                             <!-- Header User Start -->
                             <div class="ec-header-user dropdown">
-                                <button class="dropdown-toggle" data-bs-toggle="dropdown"><i class="fi-rr-user"></i></button>
-                                <ul class="dropdown-menu dropdown-menu-right">
-                                    <li><a class="dropdown-item" href="register.html">Register</a></li>
-                                    <li><a class="dropdown-item" href="checkout.html">Checkout</a></li>
-                                    <li><a class="dropdown-item" href="login.html">Login</a></li>
-                                </ul>
+                                @if(!auth()->check())
+                                    <button class="dropdown-toggle" data-bs-toggle="dropdown"><i class="fi-rr-user"></i></button>
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                        <li><a class="dropdown-item" href="{{route('register')}}">Đăng ký</a></li>
+                                        <li><a class="dropdown-item" href="{{route('login')}}">Đăng nhập</a></li>
+                                    </ul>
+                                @else
+                                    <button  class="dropdown-toggle auth-customer" data-bs-toggle="dropdown"><i class="fi-rr-user"></i></button>
+                                @endif
                             </div>
                             <!-- Header User End -->
                             <!-- Header wishlist Start -->
-                            <a href="wishlist.html" class="ec-header-btn ec-header-wishlist">
+                            <a href="javascipt:void(0)" class="ec-header-btn ec-header-wishlist">
                                 <div class="header-icon"><i class="fi-rr-heart"></i></div>
                                 <span class="ec-header-count">4</span>
                             </a>
                             <!-- Header wishlist End -->
                             <!-- Header Cart Start -->
-                            <a href="#ec-side-cart" class="ec-header-btn ec-side-toggle">
-                                <div class="header-icon"><i class="fi-rr-shopping-basket"></i></div>
-                                <span class="ec-header-count ec-cart-count cart-count-lable">3</span>
-                            </a>
+                            @if(auth()->check())
+                                <a id="check_cart" href="#ec-side-cart" class="ec-header-btn ec-side-toggle">
+                                    <div class="header-icon"><i class="fi-rr-shopping-basket"></i></div>
+                                    <span class="ec-header-count ec-cart-count cart-count-lable cart-count">{{check_cart()}}</span>
+                                </a>
+                            @else
+                                <a id="check_cart" href="javascript:void (0)" onclick="replace('{{route('login')}}')" class="ec-header-btn ec-side-toggle">
+                                    <div class="header-icon"><i class="fi-rr-shopping-basket"></i></div>
+                                </a>
+                            @endif
+
                             <!-- Header Cart End -->
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
