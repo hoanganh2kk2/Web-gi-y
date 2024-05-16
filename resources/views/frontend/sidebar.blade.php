@@ -35,11 +35,14 @@
                                 @endif
                             </ul>
                         </li>
-                        <li>
-                            <div class="ec-sidebar-block-item ec-more-toggle">
-                                <span class="checked"></span><span id="ec-more-toggle">Xem thêm</span>
-                            </div>
-                        </li>
+                            @if(!$cateNone->isEmpty())
+                                <li>
+                                    <div class="ec-sidebar-block-item ec-more-toggle">
+                                        <span class="checked"></span><span id="ec-more-toggle">Xem thêm</span>
+                                    </div>
+                                </li>
+                            @endif
+
                     </ul>
                 </div>
             </div>

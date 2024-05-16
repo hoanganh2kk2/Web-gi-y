@@ -73,7 +73,7 @@ class CategoriesController extends FrontEndController
 
 
     function set_cate(&$tpl) {
-        $categories = Category::query()->active()->orderByDesc('id')->get();
+        $categories = Category::query()->active()->where('type',Category::get_type_product())->orderByDesc('id')->get();
         $cateBlock = $categories->take(5);
         $count = $categories->count() - $cateBlock->count();
         $cateNone = $categories->slice(5, $count);

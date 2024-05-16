@@ -101,7 +101,15 @@
                                                     src="{{show_img($sale['avatar'])}}" alt="{{$sale['name']}}" /></a>
                                         <div class="ec-pro-content">
                                             <h5 class="ec-pro-title"><a href="{{get_link_product($sale['slug'])}}">{{$sale['name']}}</a></h5>
-                                            <p class="sp-line-1">Tác giả: {{$sale['writen_by']}}</p>
+                                            <div class="ec-pro-rat-price">
+                                                <div class="ec-pro-rating">
+                                                    <i class="ecicon eci-star fill"></i>
+                                                    <i class="ecicon eci-star fill"></i>
+                                                    <i class="ecicon eci-star fill"></i>
+                                                    <i class="ecicon eci-star fill"></i>
+                                                    <i class="ecicon eci-star"></i>
+                                                </div>
+                                            </div>
 
                                             <span class="ec-price">
                                                 <span class="old-price">{{show_money($sale['price'])}}</span>
