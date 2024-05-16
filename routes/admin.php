@@ -30,6 +30,7 @@ Route::prefix('admin')->group(function (){
     Route::any('/upload', [UploadMediaService::class, 'upload'])->name('upload');
     Route::middleware('auth.admin:admin')->group(function (){
         Route::get('/home', [HomeController::class, 'index'])->name('home');
+        Route::get('/analytics', [HomeController::class, 'analytics'])->name('analytics');
         Route::any('/member/{cmd?}', [MemberController::class, 'index'])->name('member');
         Route::any('/customer/{cmd?}', [CustomerController::class, 'index'])->name('customer');
         Route::any('/products/{cmd?}', [ProductController::class, 'index'])->name('products');

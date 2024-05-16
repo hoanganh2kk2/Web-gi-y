@@ -7,7 +7,7 @@
                            <img width="130" src="{{url('assets/images/logo.png')}}" alt="logo">
                         </span>
             <span class="logo-lg fw-bold" style="font-size: 20px !important;">
-             <img width="130" src="{{url('assets/images/logo.png')}}" alt="logo">
+             <img width="130" height="70" src="{{url('assets/images/logo-giay.png')}}" alt="logo">
                         </span>
         </a>
 

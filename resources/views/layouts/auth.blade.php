@@ -38,16 +38,16 @@
 
                     <div class="text-center mt-2">
                         <h5 class="text-primary">@if($route == 'login') Welcome Back ! @else Register Account @endif </h5>
-                        <p class="text-muted">@if($route == 'login') Sign in to continue to cininh. @else Get your free Minible account now. @endif  </p>
+                        <p class="text-muted">@if($route == 'login')  @else Get your free Minible account now. @endif  </p>
                     </div>
                     <div class="p-2 mt-4">
                         @yield('content')
                     </div>
                 </div>
             </div>
-            <div class="mt-5 text-center">
-                <p>© <script>document.write(new Date().getFullYear())</script> cininh. Crafted with <i class="mdi mdi-heart text-danger"></i> by cinv</p>
-            </div>
+{{--            <div class="mt-5 text-center">--}}
+{{--                <p>© <script>document.write(new Date().getFullYear())</script> cininh. Crafted with <i class="mdi mdi-heart text-danger"></i> by cinv</p>--}}
+{{--            </div>--}}
         </div>
         </div>
     </div>

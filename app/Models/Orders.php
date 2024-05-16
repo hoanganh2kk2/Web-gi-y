@@ -8,9 +8,9 @@ class Orders extends BaseModel
     public $timestamps = false;
 
 
-    function order_item(): \Illuminate\Database\Eloquent\Relations\HasOne
+    function order_item(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasOne(self::class, 'id', 'order_id');
+        return $this->hasMany(OrderItem::class, 'order_id', 'id');
     }
 
     function city(): \Illuminate\Database\Eloquent\Relations\HasOne

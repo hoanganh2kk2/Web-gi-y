@@ -44,6 +44,10 @@ class Customer extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    function order(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Orders::class, 'customer_id', 'id');
+    }
 
     public function getStatusAttribute(): array
     {
