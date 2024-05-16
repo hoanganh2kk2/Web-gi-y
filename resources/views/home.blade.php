@@ -136,35 +136,39 @@
                     <div class="card-body">
                         <div class="float-end">
                             <div class="dropdown">
-                                <a class="dropdown-toggle text-reset" href="#" id="dropdownMenuButton1"
-                                   data-bs-toggle="dropdown" aria-haspopup="true"
-                                   aria-expanded="false">
-                                    <span class="fw-semibold">Sort By:</span> <span class="text-muted">Yearly<i class="mdi mdi-chevron-down ms-1"></i></span>
-                                </a>
+{{--                                <a class="dropdown-toggle text-reset" href="#" id="dropdownMenuButton1"--}}
+{{--                                   data-bs-toggle="dropdown" aria-haspopup="true"--}}
+{{--                                   aria-expanded="false">--}}
+{{--                                    <span class="fw-semibold">Sort By:</span> <span class="text-muted">Yearly<i class="mdi mdi-chevron-down ms-1"></i></span>--}}
+{{--                                </a>--}}
 
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
-                                    <a class="dropdown-item" href="#">Monthly</a>
-                                    <a class="dropdown-item" href="#">Yearly</a>
-                                    <a class="dropdown-item" href="#">Weekly</a>
-                                </div>
+{{--                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">--}}
+{{--                                    <a class="dropdown-item" href="#">Monthly</a>--}}
+{{--                                    <a class="dropdown-item" href="#">Yearly</a>--}}
+{{--                                    <a class="dropdown-item" href="#">Weekly</a>--}}
+{{--                                </div>--}}
                             </div>
                         </div>
 
                         <h4 class="card-title" style="    margin-bottom: 42px;">Top Selling Products</h4>
 
+{{--                        @dd($order_item,$round_up)--}}
                         @foreach($order_item as $item)
                             <div class="row align-items-center g-0 mt-3">
                                 <div class="col-sm-3">
                                     <p class="text-truncate mt-1 mb-0"><i class="mdi mdi-circle-medium text-primary me-2"></i> {{$item['name']}} </p>
                                 </div>
 
-                                <div class="col-sm-9">
+                                <div class="col-sm-8">
                                     <div class="progress mt-1" style="height: 6px;">
                                         <div class="progress-bar progress-bar bg-primary" role="progressbar"
-                                             style="width: 52%" aria-valuenow="52" aria-valuemin="0"
+                                             style="width: {{$item['count'] / $round_up *100}}%" aria-valuenow="52" aria-valuemin="0"
                                              aria-valuemax="52">
                                         </div>
                                     </div>
+                                </div>
+                                <div class="col-sm-1 text-end">
+                                    {{$item['count']}}
                                 </div>
                             </div> <!-- end row-->
                         @endforeach

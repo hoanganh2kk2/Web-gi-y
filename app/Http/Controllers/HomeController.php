@@ -37,6 +37,7 @@ class HomeController extends Controller
 //        $count_post = Post::query()->count();
         $count_customer = Customer::query()->count();
         $order_item = OrderItem::query()->get()->groupBy('product_id')->toArray();
+        $round_up = 0;
         foreach ($order_item as $k => $item){
             $order_item[$k]['count'] = 0;
 
@@ -45,12 +46,16 @@ class HomeController extends Controller
                 $order_item[$k]['count'] += $value['quantity'];
                 $order_item[$k]['name'] = $value['product_name'];
             }
+            if($round_up <  $order_item[$k]['count']){
+                $round_up = $order_item[$k]['count'];
+            }
 
         }
         usort($order_item, function($a, $b) {
             return $b['count'] <=> $a['count'];
         });
         $order_item = array_slice($order_item, 0, 8);
+        $round_up = ceil($round_up / 10) * 10;
         $order = Orders::query()->with('order_item')->get();
 //        $tpl['count_post'] = $count_post;
         $tpl['count_customer'] = $count_customer;
@@ -84,6 +89,7 @@ class HomeController extends Controller
         $tpl['total_revenue'] = $total_revenue;
         $tpl['customer_rank'] = $customer_rank;
         $tpl['rank'] = $rank;
+        $tpl['round_up'] = $round_up;
         return view('home', $tpl);
     }
 
