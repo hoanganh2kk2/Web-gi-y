@@ -138,6 +138,27 @@ class HomeController extends Controller
 
             }
         }
+        if($type == 'Weekly') {
+            // Lấy ngày hiện tại và xác định ngày đầu tiên và ngày cuối cùng của tuần
+            $startOfWeek = Carbon::now()->startOfWeek();
+            $endOfWeek = Carbon::now()->endOfWeek();
+
+            // Lặp qua từng ngày trong tuần
+            while ($startOfWeek->lte($endOfWeek)) {
+                // Tạo thời gian bắt đầu và kết thúc cho ngày hiện tại
+                $startOfDay = $startOfWeek->copy()->startOfDay();
+                $endOfDay = $startOfWeek->copy()->endOfDay();
+
+                // Truy vấn tổng giá trị của trường 'value' cho ngày hiện tại
+                $orders = Orders::where('created_at', '>=', $startOfDay->timestamp)
+                    ->where('created_at', '<=', $endOfDay->timestamp);
+                $data['data_order'][] =$orders ->count() ;
+                $data['income'][] =  $orders->sum('total');
+                $data['labels'][] = $startOfWeek->format('d/m') . ' - ' . $startOfWeek->addDay()->format('d/m');
+
+            }
+
+        }
         return response()->json($data);
     }
 }

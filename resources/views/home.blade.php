@@ -102,7 +102,7 @@
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton5">
                                     <a class="dropdown-item" href="#" onclick="sale_analytics('Day')">Day</a>
                                     <a class="dropdown-item" href="#" onclick="sale_analytics('Monthly')">Monthly</a>
-{{--                                    <a class="dropdown-item" href="#" onclick="sale_analytics('Monthly')">Monthly</a>--}}
+                                    <a class="dropdown-item" href="#" onclick="sale_analytics('Weekly')">Weekly</a>
                                 </div>
                             </div>
                         </div>
