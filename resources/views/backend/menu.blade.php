@@ -84,16 +84,16 @@
                         <li><a href="{{route('products', ['cmd' => 'input'])}}">Thêm mới sản phẩm</a></li>
                     </ul>
                 </li>
-                <li class="menu-title">Đơn hàng </li>
-                <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="uil-store"></i>
-                        <span>Quản lý đơn hàng</span>
-                    </a>
+{{--                <li class="menu-title">Đơn hàng </li>--}}
+{{--                <li>--}}
+{{--                    <a href="javascript: void(0);" class="has-arrow waves-effect">--}}
+{{--                        <i class="uil-store"></i>--}}
+{{--                        <span>Quản lý đơn hàng</span>--}}
+{{--                    </a>--}}
 {{--                    <ul class="sub-menu" aria-expanded="false">--}}
 {{--                        <li><a href="{{route('products', ['type' => 1])}}">Danh sách đơn hàng</a></li>--}}
 {{--                    </ul>--}}
-                </li>
+{{--                </li>--}}
             </ul>
 
         </div>
