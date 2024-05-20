@@ -537,6 +537,7 @@
                                 src="${show_img(val['product_avatar'])}" alt="cart-${val.id}"></a>
                     <div class="ec-pro-content">
                         <a href="${get_link_product(val.product_slug)}" class="cart_pro_title f-sans-serif">${val.product_name}</a>
+                        <span>${val.size.name}, ${val.color.name}</span>
                         <span class="cart-price"><span class="cart-value-${val.id}">${val.value}</span> x ${val.quantity}</span>
                         <div class="qty-plus-minus">
                             <div onclick="SubtractQuantityCart('${val.id}')" class="dec ec_qtybtn ec_qtybtn_dec">-</div>

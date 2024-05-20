@@ -38,6 +38,9 @@
                                         <thead>
                                         <tr>
                                             <th>Sản phẩm</th>
+                                            <th>Kích cỡ </th>
+                                            <th>Màu sắc </th>
+                                            <th>Sản phẩm</th>
                                             <th>Giá</th>
                                             <th style="text-align: center;">Số lượng</th>
                                             <th>Tổng tiền</th>
@@ -53,6 +56,9 @@
                                                         href="{{get_link_product($cart['product_slug'])}}"><img
                                                             class="ec-cart-pro-img mr-4 f-sans-serif"
                                                             src="{{show_img($cart['product_avatar'])}}" alt="cart-{{$cart['id']}}" />{{$cart['product_name']}}</a></td>
+                                            <td>{{$cart->size->name}}</td>
+                                            <td>{{$cart->color->name}}</td>
+                                            <td></td>
                                             <td data-label="Price" class="ec-cart-pro-price"><span
                                                         class="amount ">{{show_money($cart['value'])}}</span></td>
                                             <input type="hidden" name="cart-value" class="cart-value-hidden-{{$cart['id']}}" value="{{$cart['value']}}">

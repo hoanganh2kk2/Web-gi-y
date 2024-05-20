@@ -33,12 +33,21 @@ class CartController extends FrontEndController
         $tpl = [];
         $productId = $request->get('id');
         $quantity = $request->get('quantity');
+        $color = $request->get('color');
+        $size = $request->get('size');
         if(!$productId) {
             eJson::getInstance()->getJsonError('Không tìm thấy thông tin sản phẩm');
         }
         if(!$quantity) {
             eJson::getInstance()->getJsonError('Không tìm thấy thông tin số lượng sản phẩm');
         }
+        if(!$color) {
+            eJson::getInstance()->getJsonError('Chưa chọn màu sản phẩm');
+        }
+        if(!$size) {
+            eJson::getInstance()->getJsonError('Chưa chọn kích cỡ sản phẩm');
+        }
+
         $product = ProductModel::query()->where('id', $productId)->active()->typeOfficial()->first();
         if(!$product) {
             eJson::getInstance()->getJsonError('Không tìm thấy thông tin sản phẩm');
@@ -68,13 +77,15 @@ class CartController extends FrontEndController
             }
             // inset vào cart_item
             // check xem đã tồn tại giỏ hay chưa và trong giỏ hàng có sp đó hay chưa ?
-            $cart_item = CartItem::query()->where('cart_id', $cart_id)->where('product_id', $productId)->first();
+            $cart_item = CartItem::query()->where('cart_id', $cart_id)->where('product_id', $productId)->where('size_id',$size)->where('color_id',$color)->first();
             if(!$cart_item || $cart_item['value'] != $product['sell_price']) {
                 // không tồn tại sp trong cart_item => tạo mới
                 $inset_cart_item = [
                     'cart_id' => $cart_id,
                     'quantity' => $quantity,
                     'product_id' => $productId,
+                    'size_id' => $size,
+                    'color_id' => $color,
                     'value' => $product['sell_price'],
                     'total' => $product['sell_price'] * $quantity,
                     'product_name' => $product['name'],
@@ -90,7 +101,7 @@ class CartController extends FrontEndController
                 $cart_item['total'] = $cart_item['value'] * $quantity;
                 $cart_item->save();
             }
-            $cartItem = CartItem::query()->where('cart_id', $cart_id)->get();
+            $cartItem = CartItem::query()->with('color','size')->where('cart_id', $cart_id)->get();
             $tpl['cartItem'] = $cartItem;
             $tpl['count'] = $cartItem->count();
             transaction_commit();
@@ -173,7 +184,7 @@ class CartController extends FrontEndController
             return eView::getInstance()->notfoundClient();
         }
         $cartId = $cart['id'];
-        $cartItem = CartItem::query()->where('cart_id', $cartId)->get();
+        $cartItem = CartItem::query()->with('color','size')->where('cart_id', $cartId)->get();
         if(!$cartItem->count()) {
             return eView::getInstance()->notfoundClient();
         }

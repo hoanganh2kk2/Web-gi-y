@@ -113,9 +113,11 @@
                                             <div class="ec-pro-variation-inner ec-pro-variation-size">
                                                 <span>Kích cỡ</span>
                                                 <div class="ec-pro-variation-content">
-                                                    <ul>
+                                                    <ul class="size">
                                                         @foreach(@$product->size_id as $key => $value)
-                                                            <li><span>{{$value['name']}}</span></li>
+                                                            <li @if($loop->first) class="active" @endif>
+                                                                <span data-id="{{$key}}">{{$value['name']}}</span>
+                                                            </li>
 
                                                         @endforeach
 
@@ -126,11 +128,11 @@
                                                 <span>Màu sắc</span>
                                                 <div class="ec-pro-variation-content">
 
-                                                    <ul>
+                                                    <ul class="color">
                                                         @foreach(@$product->color_id as $key => $value)
                                                             {{--                                                        <li class="active"><span style="background-color:{{$value['code']}}"></span></li>--}}
-                                                            <li>
-                                                                <span style="background-color:{{$value['code']}}"></span>
+                                                            <li @if($loop->first) class="active" @endif>
+                                                                <span style="background-color:{{$value['code']}}; border: 1px #d9c9c9 solid " data-id="{{$key}}"></span>
                                                             </li>
                                                         @endforeach
 
@@ -702,11 +704,17 @@
                 return location.replace('{{route('login')}}')
             @endif
             if (id) {
+                const size = document.querySelector('.ec-pro-variation-content .size li.active span').getAttribute('data-id');
+                const color = document.querySelector('.ec-pro-variation-content .color li.active span').getAttribute('data-id');
+
+                // Lặp qua mảng activeSpans để lấy giá trị của từng thẻ <span>
                 let url = '{{route('fe.cart', ['cmd' => 'ajax_add_to_cart'])}}'
                 let quantity = $('.qty-input-' + id).val()
                 quantity = parseInt(quantity)
                 url = setUrlParametersHref(url, 'id', id)
                 url = setUrlParametersHref(url, 'quantity', quantity)
+                url = setUrlParametersHref(url, 'color', color)
+                url = setUrlParametersHref(url, 'size', size)
                 return _POST_FORM('', url, {
                     callback: function (res) {
                         if (res.status === 200) {
@@ -718,11 +726,13 @@
                             $('.remove-to-cart').remove()
                             $.map(cartItem, function (val) {
                                 value = val.value
+                                console.log(val)
                                 html += `<li class="remove-to-cart remove-to-cart-${val.id}">
                     <a href="${get_link_product(val.product_slug)}" class="sidecart_pro_img"><img
                                 src="${show_img(val['product_avatar'])}" alt="cart-${val.id}"></a>
                     <div class="ec-pro-content">
                         <a href="${get_link_product(val.product_slug)}" class="cart_pro_title f-sans-serif">${val.product_name}</a>
+                        <span>${val.size.name}, ${val.color.name}</span>
                         <span class="cart-price"><span class="cart-value-${val.id}">${val.value}</span> x ${val.quantity}</span>
                         <div class="qty-plus-minus">
                             <div onclick="SubtractQuantityCart('${val.id}')" class="dec ec_qtybtn ec_qtybtn_dec">-</div>

@@ -23,6 +23,7 @@ class OrderController extends FrontEndController
 
     function list(Request $request)
     {
+        $auth_id = auth()->user()->id;
         $tpl = [];
         $schema =[
             'type' => 'HomePage',
@@ -32,7 +33,7 @@ class OrderController extends FrontEndController
         ];
         $schema = setSchema($schema);
         $tpl['schema'] = $schema;
-        $model = $this->model;
+        $model = $this->model->where('customer_id',$auth_id);
         $count = $request->get('count', 50);
         $sort = $request->get('sort', 'DESC');
         $model = $model->orderBy('id', $sort);

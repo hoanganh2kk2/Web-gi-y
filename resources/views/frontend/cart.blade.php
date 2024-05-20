@@ -16,6 +16,7 @@
                                 src="{{show_img($item['product_avatar'])}}" alt="cart-{{$item['id']}}"></a>
                     <div class="ec-pro-content">
                         <a href="{{get_link_product($item['product_slug'])}}" class="cart_pro_title f-sans-serif">{{$item['product_name']}}</a>
+                        <span>{{$item->color->name}}, {{$item->size->name}}</span>
                         <span class="cart-price"><span class="cart-value-{{$item['id']}}">{{$item['value']}}</span> x <span class="cart-price-quantity cart-price-quantity-{{$item['id']}}">{{$item['quantity']}}</span></span>
                         <div class="qty-plus-minus">
                             <div onclick="SubtractQuantityCart('{{$item['id']}}')" class="dec ec_qtybtn ec_qtybtn_dec">-</div>

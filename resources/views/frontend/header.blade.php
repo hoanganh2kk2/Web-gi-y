@@ -103,7 +103,7 @@
                 <div class="col-md-12 align-self-center">
                     <div class="ec-main-menu">
                         <ul>
-                            <li><a href="index.html">Home</a></li>
+                            <li><a href="{{route('fe.home')}}">Home</a></li>
                             <li class="dropdown position-static"><a href="javascript:void(0)">Categories</a>
                                 <ul class="mega-menu d-block">
                                     <li class="d-flex">
@@ -174,46 +174,7 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li class="dropdown"><a href="javascript:void(0)">Products</a>
-                                <ul class="sub-menu">
-                                    <li class="dropdown position-static"><a href="javascript:void(0)">Product page
-                                            <i class="ecicon eci-angle-right"></i></a>
-                                        <ul class="sub-menu sub-menu-child">
-                                            <li><a href="product-left-sidebar.html">Product left sidebar</a></li>
-                                            <li><a href="product-right-sidebar.html">Product right sidebar</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown position-static"><a href="javascript:void(0)">Product 360
-                                            <i class="ecicon eci-angle-right"></i></a>
-                                        <ul class="sub-menu sub-menu-child">
-                                            <li><a href="product-360-left-sidebar.html">360 left sidebar</a></li>
-                                            <li><a href="product-360-right-sidebar.html">360 right sidebar</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown position-static"><a href="javascript:void(0)">Product video
-                                            <i class="ecicon eci-angle-right"></i></a>
-                                        <ul class="sub-menu sub-menu-child">
-                                            <li><a href="product-video-left-sidebar.html">Video left sidebar</a>
-                                            </li>
-                                            <li><a href="product-video-right-sidebar.html">Video right sidebar</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown position-static"><a href="javascript:void(0)">Product
-                                            gallery
-                                            <i class="ecicon eci-angle-right"></i></a>
-                                        <ul class="sub-menu sub-menu-child">
-                                            <li><a href="product-gallery-left-sidebar.html">Gallery left sidebar</a>
-                                            </li>
-                                            <li><a href="product-gallery-right-sidebar.html">Gallery right
-                                                    sidebar</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="product-full-width.html">Product full width</a></li>
-                                    <li><a href="product-360-full-width.html">360 full width</a></li>
-                                    <li><a href="product-video-full-width.html">Video full width</a></li>
-                                    <li><a href="product-gallery-full-width.html">Gallery full width</a></li>
-                                </ul>
+                            <li class="dropdown"><a href="{{route('fe.category',['cmd' => 'san-pham'] )}}">Products</a>
                             </li>
                             <li class="dropdown"><a href="javascript:void(0)">Blog</a>
                                 <ul class="sub-menu">

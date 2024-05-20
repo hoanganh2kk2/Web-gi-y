@@ -614,7 +614,7 @@ if (! function_exists('get_cart')) {
             return 0;
         }
         $cart_id = $cart['id'];
-        return CartItem::query()->where('cart_id', $cart_id)->get();
+        return CartItem::query()->with('color','size')->where('cart_id', $cart_id)->get();
     }
 }
 
