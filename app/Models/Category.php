@@ -8,6 +8,7 @@ class Category extends BaseModel
     public $timestamps = false;
     protected $table = 'categories';
 
+    const TYPE_NEW = 5;
     const TYPE_PRODUCT = 2;
     const TYPE_TAG = 1;
     const TYPE_SIZE = 3;
@@ -26,6 +27,10 @@ class Category extends BaseModel
         }
     }
 
+    static function get_type_new(): int
+    {
+        return self::TYPE_NEW;
+    }
 
     static function get_type_product(): int
     {
@@ -71,6 +76,12 @@ class Category extends BaseModel
                 'style' => 'secondary',
                 'icon' => 'ri-alert-fill',
                 'name' => 'Màu sắc',
+            ],
+            self::get_type_new() => [
+                'id' => self::get_type_new(),
+                'style' => 'success',
+                'icon' => 'ri-checkbox-circle-line',
+                'name' => 'Tin tức',
             ],
 
         ];

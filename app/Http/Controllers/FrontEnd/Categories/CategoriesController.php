@@ -66,7 +66,7 @@ class CategoriesController extends FrontEndController
         if($category !== 'san-pham') {
             $products = $products->whereRaw('JSON_CONTAINS(category_id, \'["' . $category['id'] . '"]\')');
         }
-        $products  = $products->paginate(12);
+        $products  = $products->paginate(5);
         $tpl['products'] = $products;
         return eView::getInstance()->setView($this->dir, 'productsList', $tpl);
     }

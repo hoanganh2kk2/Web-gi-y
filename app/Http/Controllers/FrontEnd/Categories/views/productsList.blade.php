@@ -42,22 +42,17 @@
                                                 <img class="hover-image"
                                                      src="{{show_img($product['avatar'])}}" alt="{{$product['name']}}" />
                                             </a>
-                                            <span class="percentage">20%</span>
-                                            <a href="#" class="quickview" data-link-action="quickview"
-                                               title="Quick view" data-bs-toggle="modal"
-                                               data-bs-target="#ec_quickview_modal"><i class="fi-rr-eye"></i></a>
+                                            <span class="percentage">{{round(100 - $product['sell_price'] / $product['price']*100)   }}%</span>
                                             <div class="ec-pro-actions">
-                                                <a href="compare.html" class="ec-btn-group compare"
-                                                   title="Compare"><i class="fi fi-rr-arrows-repeat"></i></a>
-                                                <button title="Add To Cart" class="add-to-cart"><i
-                                                            class="fi-rr-shopping-basket"></i> Add To Cart</button>
-                                                <a class="ec-btn-group wishlist" title="Wishlist"><i
-                                                            class="fi-rr-heart"></i></a>
+{{--                                                <a class="ec-btn-group wishlist" title="Wishlist"><i class="fi-rr-heart"></i></a>--}}
+{{--                                                <a href="javascript:void(0)" class="ec-btn-group quickview" onclick="_SHOW_FORM_REMOTE('{{route('fe.product', ['cmd' => 'ajax_load_detail', 'id' => $product['id']])}}')" data-link-action="quickview" title="Quick view"--}}
+{{--                                                   data-bs-toggle="modal" data-bs-target="#ec_quickview_modal"><i class="fi-rr-eye"></i></a>--}}
+                                                <a style="position: relative;top: -220px;" href="javascript:void(0)" onclick="addToCart1('{{$product['id']}}')"  title="Add To Cart" class="ec-btn-group"><i class="fi-rr-shopping-basket"></i></a>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="ec-pro-content">
-                                        <h5 class="ec-pro-title" style="padding: 0"><a href="">{{$product['name']}}</a></h5>
+                                        <h5 class="ec-pro-title" style="padding: 0"><a href="{{get_link_product($product['slug'])}}">{{$product['name']}}</a></h5>
 {{--                                        <h5 class="ec-pro-title" style="padding: 0"><a href="{{get_link_product($product['slug'])}}">{{$product['name']}}</a></h5>--}}
                                         <div class="ec-pro-rating">
                                             <i class="ecicon eci-star fill"></i>
@@ -75,12 +70,11 @@
                                             <div class="ec-pro-variation-inner ec-pro-variation-color">
                                                 <span>Màu sắc</span>
                                                 <div class="ec-pro-color">
-                                                    <span class="ec-pro-opt-label">Color</span>
-                                                    <ul class="">
+                                                    <ul class="color">
                                                         @foreach(@$product->color_id as $key => $value)
                                                             {{--                                                        <li class="active"><span style="background-color:{{$value['code']}}"></span></li>--}}
-                                                            <li onclick="activeLi(this)">
-                                                                <span style="background-color:{{$value['code']}}; border: 1px #d9c9c9 solid "></span>
+                                                            <li onclick="activeLi(this)" @if($loop->first) class="active" @endif>
+                                                                <span style="background-color:{{$value['code']}}; border: 1px #d9c9c9 solid " data-id="{{$key}}"></span>
                                                             </li>
                                                         @endforeach
                                                     </ul>
@@ -88,9 +82,11 @@
                                             </div>
                                             <div class="ec-pro-size">
                                                 <span class="ec-pro-opt-label">Kích cỡ</span>
-                                                <ul class="ec-opt-size">
+                                                <ul class="ec-opt-size size">
                                                     @foreach(@$product->size_id as $key => $value)
-                                                        <li><a class="ec-opt-sz">{{$value['name']}}</a></li>
+                                                        <li @if($loop->first) class="active" @endif>
+                                                            <a class="ec-opt-sz" data-id="{{$key}}">{{$value['name']}}</a>
+                                                        </li>
                                                     @endforeach
 
                                                     {{--                                                <li class="active"><a href="#" class="ec-opt-sz"--}}
@@ -151,35 +147,40 @@
             });
         });
 
-        $('#send_form_comment').click(function () {
-            return _POST_FORM('#form_comment', '{{route($router_current_name, ['cmd' => 'ajax_save'])}}')
-        })
-
-        function addToCart(id) {
+        function addToCart1(id) {
             @if(!auth()->check())
                 return location.replace('{{route('login')}}')
             @endif
             if (id) {
+                const size = document.querySelector('.ec-pro-size .size li.active a').getAttribute('data-id');
+                const color = document.querySelector('.ec-pro-color .color li.active span').getAttribute('data-id');
+
+                console.log(1212121)
+                // Lặp qua mảng activeSpans để lấy giá trị của từng thẻ <span>
                 let url = '{{route('fe.cart', ['cmd' => 'ajax_add_to_cart'])}}'
-                let quantity = $('.qty-input-' + id).val()
-                quantity = parseInt(quantity)
+                // let quantity = $('.qty-input-' + id).val()
+                // quantity = parseInt(quantity)
+                let quantity = 1
                 url = setUrlParametersHref(url, 'id', id)
                 url = setUrlParametersHref(url, 'quantity', quantity)
+                url = setUrlParametersHref(url, 'color', color)
+                url = setUrlParametersHref(url, 'size', size)
                 return _POST_FORM('', url, {
                     callback: function (res) {
                         if (res.status === 200) {
                             let val = res.result;
                             let count = val.count
                             let cartItem = val.cartItem
+                            console.log(cartItem)
                             let html = ''
                             let value = ''
                             $('.remove-to-cart').remove()
                             $.map(cartItem, function (val) {
+                                console.log(12121)
                                 value = val.value
                                 html += `<li class="remove-to-cart remove-to-cart-${val.id}">
                     <a href="${get_link_product(val.product_slug)}" class="sidecart_pro_img"><img
                                 src="${show_img(val['product_avatar'])}" alt="cart-${val.id}"></a>
-                                <span>${val.size.name}, ${val.color.name}</span>
                     <div class="ec-pro-content">
                         <a href="${get_link_product(val.product_slug)}" class="cart_pro_title f-sans-serif">${val.product_name}</a>
                         <span>${val.size.name}, ${val.color.name}</span>

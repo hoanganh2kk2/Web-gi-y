@@ -6,6 +6,7 @@ use App\Http\Controllers\BackEnd\Member\MemberController;
 use App\Http\Controllers\BackEnd\Auth\LoginController;
 use App\Http\Controllers\BackEnd\Auth\RegisterController;
 use App\Http\Controllers\BackEnd\Menu\MenuController;
+use App\Http\Controllers\BackEnd\Post\PostController;
 use App\Http\Controllers\BackEnd\Product\ProductController;
 use App\Http\Controllers\HomeController;
 use App\Http\Service\Media\UploadMediaService;
@@ -36,5 +37,6 @@ Route::prefix('admin')->group(function (){
         Route::any('/products/{cmd?}', [ProductController::class, 'index'])->name('products');
         Route::any('/menu/{cmd?}', [MenuController::class, 'index'])->name('menu');
         Route::any('/categories/{cmd?}', [CategoriesController::class, 'index'])->name('categories');
+        Route::any('/post/{cmd?}', [PostController::class, 'index'])->name('post');
     });
 });

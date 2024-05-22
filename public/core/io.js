@@ -573,8 +573,7 @@ function get_link_product(link = '') {
 }
 
 function show_img(link) {
-    // let hostname = location.hostname;
-    let hostname = location.href;
+    let hostname = location.hostname;
     return 'https://' + hostname + '/' + link;
 }
 

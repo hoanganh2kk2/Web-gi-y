@@ -12,8 +12,8 @@
                                     <h2 class="ec-slide-stitle">Sale offer</h2>
                                     <h1 class="ec-slide-title">SUMMER BEST COLLECTION</h1>
                                     <div class="ec-slide-desc">
-                                        <p>starting at $ <b>29</b>.99</p>
-                                        <a href="#" class="btn btn-lg btn-primary">Shop Now <i
+{{--                                        <p>starting at $ <b>29</b>.99</p>--}}
+                                        <a href="{{route('fe.category',['cmd' => 'san-pham'] )}}" class="btn btn-lg btn-primary">Mua ngay <i
                                                     class="ecicon eci-angle-double-right" aria-hidden="true"></i></a>
                                     </div>
                                 </div>
@@ -29,8 +29,8 @@
                                     <h2 class="ec-slide-stitle">Trending item</h2>
                                     <h1 class="ec-slide-title">fashion sale</h1>
                                     <div class="ec-slide-desc">
-                                        <p>starting at $ <b>20</b>.00</p>
-                                        <a href="#" class="btn btn-lg btn-primary">Shop Now <i
+
+                                        <a href="{{route('fe.category',['cmd' => 'san-pham'] )}}" class="btn btn-lg btn-primary">Mua ngay <i
                                                     class="ecicon eci-angle-double-right" aria-hidden="true"></i></a>
                                     </div>
                                 </div>
@@ -46,8 +46,8 @@
                                     <h2 class="ec-slide-stitle">Collection</h2>
                                     <h1 class="ec-slide-title">Sport Shoes</h1>
                                     <div class="ec-slide-desc">
-                                        <p>starting at $ <b>15</b>.00</p>
-                                        <a href="#" class="btn btn-lg btn-primary">Shop Now <i
+
+                                        <a href="{{route('fe.category',['cmd' => 'san-pham'] )}}" class="btn btn-lg btn-primary">Mua ngay <i
                                                     class="ecicon eci-angle-double-right" aria-hidden="true"></i></a>
                                     </div>
                                 </div>

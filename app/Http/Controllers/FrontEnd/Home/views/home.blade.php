@@ -170,19 +170,19 @@
                                                             <img class="hover-image"
                                                                  src="{{show_img($item['avatar'])}}" alt="{{$item['name']}} hover" />
                                                         </a>
-                                                        <span class="flags">
-                                                            @if($k%2 == 0)
-                                                            <span class="new">New</span>
-                                                            @else
-                                                             <span class="sale">Sale</span>
-                                                            @endif
-                                                        </span>
-                                                        <div class="ec-pro-actions">
-                                                            <a class="ec-btn-group wishlist" title="Wishlist"><i class="fi-rr-heart"></i></a>
-                                                            <a href="javascript:void(0)" class="ec-btn-group quickview" onclick="_SHOW_FORM_REMOTE('{{route('fe.product', ['cmd' => 'ajax_load_detail', 'id' => $item['id']])}}')" data-link-action="quickview" title="Quick view"
-                                                               data-bs-toggle="modal" data-bs-target="#ec_quickview_modal"><i class="fi-rr-eye"></i></a>
-                                                            <a href="javascript:void(0)" onclick="addToCart('{{$item['id']}}')"  title="Add To Cart" class="ec-btn-group add-to-cart"><i class="fi-rr-shopping-basket"></i></a>
-                                                        </div>
+{{--                                                        <span class="flags">--}}
+{{--                                                            @if($k%2 == 0)--}}
+{{--                                                            <span class="new">New</span>--}}
+{{--                                                            @else--}}
+{{--                                                             <span class="sale">Sale</span>--}}
+{{--                                                            @endif--}}
+{{--                                                        </span>--}}
+{{--                                                        <div class="ec-pro-actions">--}}
+{{--                                                            <a class="ec-btn-group wishlist" title="Wishlist"><i class="fi-rr-heart"></i></a>--}}
+{{--                                                            <a href="javascript:void(0)" class="ec-btn-group quickview" onclick="_SHOW_FORM_REMOTE('{{route('fe.product', ['cmd' => 'ajax_load_detail', 'id' => $item['id']])}}')" data-link-action="quickview" title="Quick view"--}}
+{{--                                                               data-bs-toggle="modal" data-bs-target="#ec_quickview_modal"><i class="fi-rr-eye"></i></a>--}}
+{{--                                                            <a href="javascript:void(0)" onclick="addToCart('{{$item['id']}}')"  title="Add To Cart" class="ec-btn-group add-to-cart"><i class="fi-rr-shopping-basket"></i></a>--}}
+{{--                                                        </div>--}}
                                                     </div>
                                                 </div>
                                                 <div class="ec-pro-content">
@@ -267,12 +267,12 @@
                                                                             <span class="sale">Sale</span>
                                                                         @endif
                                                         </span>
-                                                                    <div class="ec-pro-actions">
-                                                                        <a class="ec-btn-group wishlist" title="Wishlist"><i class="fi-rr-heart"></i></a>
-                                                                        <a href="#" class="ec-btn-group quickview" data-link-action="quickview" title="Quick view"
-                                                                           data-bs-toggle="modal" data-bs-target="#ec_quickview_modal"><i class="fi-rr-eye"></i></a>
-                                                                        <a href="javascript:void(0)"  title="Add To Cart" class="ec-btn-group add-to-cart"><i class="fi-rr-shopping-basket"></i></a>
-                                                                    </div>
+{{--                                                                    <div class="ec-pro-actions">--}}
+{{--                                                                        <a class="ec-btn-group wishlist" title="Wishlist"><i class="fi-rr-heart"></i></a>--}}
+{{--                                                                        <a href="#" class="ec-btn-group quickview" data-link-action="quickview" title="Quick view"--}}
+{{--                                                                           data-bs-toggle="modal" data-bs-target="#ec_quickview_modal"><i class="fi-rr-eye"></i></a>--}}
+{{--                                                                        <a href="javascript:void(0)"  title="Add To Cart" class="ec-btn-group add-to-cart"><i class="fi-rr-shopping-basket"></i></a>--}}
+{{--                                                                    </div>--}}
                                                                 </div>
                                                             </div>
                                                             @php $cateProductNew = json_decode($item['category_id']) @endphp
@@ -429,63 +429,175 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row space-t-50" data-animation="fadeIn">
-                        <!--  Special Section Start -->
-                        <div class="ec-spe-section col-lg-12 col-md-12 col-sm-12 sectopn-spc-mb">
-                            <div class="col-md-12">
-                                <div class="section-title">
-                                    <h2 class="ec-title f-sans-serif">Sản phẩm bán trong ngày</h2>
-                                </div>
-                            </div>
-                            @if(!empty($newProduct) && !$newProduct->isEmpty())
-                                @php $prodctsDay = $newProduct->take(2) @endphp
+{{--                    <div class="row space-t-50" data-animation="fadeIn">--}}
+{{--                        <!--  Special Section Start -->--}}
+{{--                        <div class="ec-spe-section col-lg-12 col-md-12 col-sm-12 sectopn-spc-mb">--}}
+{{--                            <div class="col-md-12">--}}
+{{--                                <div class="section-title">--}}
+{{--                                    <h2 class="ec-title f-sans-serif">Sản phẩm bán trong ngày</h2>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                            @if(!empty($newProduct) && !$newProduct->isEmpty())--}}
+{{--                                @php $prodctsDay = $newProduct->take(2) @endphp--}}
 
-                             <div class="ec-spe-products">
-                                 @foreach($prodctsDay as $k => $day)
-                                <div class="ec-spe-product">
-                                    <div class="ec-spe-pro-inner">
-                                        <div class="ec-spe-pro-image-outer col-md-6 col-sm-12">
-                                            <div class="ec-spe-pro-image">
-                                                <img class="img-responsive" src="{{show_img($day['avatar'])}}" alt="{{$day['name']}}">
-                                            </div>
-                                        </div>
-                                        <div class="ec-spe-pro-content col-md-6 col-sm-12">
-                                            <div class="ec-spe-pro-rating">
+{{--                             <div class="ec-spe-products">--}}
+{{--                                 @foreach($prodctsDay as $k => $day)--}}
+{{--                                <div class="ec-spe-product">--}}
+{{--                                    <div class="ec-spe-pro-inner">--}}
+{{--                                        <div class="ec-spe-pro-image-outer col-md-6 col-sm-12">--}}
+{{--                                            <div class="ec-spe-pro-image">--}}
+{{--                                                <img class="img-responsive" src="{{show_img($day['avatar'])}}" alt="{{$day['name']}}">--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="ec-spe-pro-content col-md-6 col-sm-12">--}}
+{{--                                            <div class="ec-spe-pro-rating">--}}
 
-                                            </div>
-                                            <h5 class="ec-spe-pro-title f-sans-serif"><a href="{{get_link_product($day['slug'])}}">{{$day['name']}}</a></h5>
-                                            <div class="ec-spe-pro-desc f-sans-serif sp-line-3">{!! $day['description'] !!}</div>
-                                            <div class="ec-spe-price">
-                                                <span class="new-price ">{{show_money($day['sell_price'])}}</span>
-                                                <span class="old-price">{{show_money($day['price'])}}</span>
-                                            </div>
-                                            <div class="ec-spe-pro-btn">
-                                                <a href="#" class="btn btn-lg btn-primary f-sans-serif">Thêm vào giỏ hàng</a>
-                                            </div>
-                                            <div class="ec-spe-pro-progress">
-                                                <span class="ec-spe-pro-progress-desc"><span>Already Sold:
-                                                        <b>{{$k * 17}}</b></span><span>Available: <b>200</b></span></span>
-                                                <span class="ec-spe-pro-progressbar"></span>
-                                            </div>
-                                            <div class="countdowntimer">
-                                                <span class="ec-spe-count-desc f-sans-serif"> Ưu đãi sẽ kết thúc sau:</span>
-                                                <span id="ec-spe-count-1"></span>
-                                            </div>
+{{--                                            </div>--}}
+{{--                                            <h5 class="ec-spe-pro-title f-sans-serif"><a href="{{get_link_product($day['slug'])}}">{{$day['name']}}</a></h5>--}}
+{{--                                            <div class="ec-spe-pro-desc f-sans-serif sp-line-3">{!! $day['description'] !!}</div>--}}
+{{--                                            <div class="ec-spe-price">--}}
+{{--                                                <span class="new-price ">{{show_money($day['sell_price'])}}</span>--}}
+{{--                                                <span class="old-price">{{show_money($day['price'])}}</span>--}}
+{{--                                            </div>--}}
+{{--                                            <div class="ec-spe-pro-btn">--}}
+{{--                                                <a href="#" class="btn btn-lg btn-primary f-sans-serif">Thêm vào giỏ hàng</a>--}}
+{{--                                            </div>--}}
+{{--                                            <div class="ec-spe-pro-progress">--}}
+{{--                                                <span class="ec-spe-pro-progress-desc"><span>Already Sold:--}}
+{{--                                                        <b>{{$k * 17}}</b></span><span>Available: <b>200</b></span></span>--}}
+{{--                                                <span class="ec-spe-pro-progressbar"></span>--}}
+{{--                                            </div>--}}
+{{--                                            <div class="countdowntimer">--}}
+{{--                                                <span class="ec-spe-count-desc f-sans-serif"> Ưu đãi sẽ kết thúc sau:</span>--}}
+{{--                                                <span id="ec-spe-count-1"></span>--}}
+{{--                                            </div>--}}
 
-                                        </div>
-                                    </div>
-                                </div>
-                                 @endforeach
-                             </div>
-                            @endif
-                        </div>
-                        <!--  Special Section End -->
-                    </div>
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                 @endforeach--}}
+{{--                             </div>--}}
+{{--                            @endif--}}
+{{--                        </div>--}}
+{{--                        <!--  Special Section End -->--}}
+{{--                    </div>--}}
                 </div>
             </div>
         </div>
     </section>
     <!-- ec Product tab Area End -->
+        <!--  Blog Section Start -->
+        <section class="section ec-blog-section section-space-p">
+            <div class="container">
+                <div class="row">
+                    <div class="ec-blog-slider owl-carousel" data-animation="fadeIn">
+                        <div class="ec-blog-block">
+                            <div class="ec-blog-inner">
+                                <div class="ec-blog-image">
+                                    <a href="blog-detail-left-sidebar.html">
+                                        <img class="blog-image" src="assets/images/blog-image/2.jpg"
+                                             alt="Blog" />
+                                    </a>
+                                </div>
+                                <div class="ec-blog-content">
+                                    <div class="ec-blog-cat"><a href="blog-left-sidebar.html">Clothes</a></div>
+                                    <h5 class="ec-blog-title"><a
+                                                href="blog-detail-left-sidebar.html">Curbside fashion Trends: How to Win the Pickup Battle.</a></h5>
+
+                                    <div class="ec-blog-date">By<span>Mr Robin</span> / Jan 18, 2022</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ec-blog-block">
+                            <div class="ec-blog-inner">
+                                <div class="ec-blog-image">
+                                    <a href="blog-detail-left-sidebar.html">
+                                        <img class="blog-image" src="assets/images/blog-image/3.jpg"
+                                             alt="Blog" />
+                                    </a>
+                                </div>
+                                <div class="ec-blog-content">
+                                    <div class="ec-blog-cat"><a href="blog-left-sidebar.html">Fashion</a></div>
+                                    <h5 class="ec-blog-title"><a
+                                                href="blog-detail-left-sidebar.html">Clothes Retail KPIs 2021 Guide for Clothes Executives.</a></h5>
+
+                                    <div class="ec-blog-date">By<span>Mr Admin</span> / Apr 06, 2022</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ec-blog-block">
+                            <div class="ec-blog-inner">
+                                <div class="ec-blog-image">
+                                    <a href="blog-detail-left-sidebar.html">
+                                        <img class="blog-image" src="assets/images/blog-image/4.jpg"
+                                             alt="Blog" />
+                                    </a>
+                                </div>
+                                <div class="ec-blog-content">
+                                    <div class="ec-blog-cat"><a href="blog-left-sidebar.html">Shoes</a></div>
+                                    <h5 class="ec-blog-title"><a
+                                                href="blog-detail-left-sidebar.html">EBT vendors: Claim Your Share of SNAP Online Revenue.</a></h5>
+
+                                    <div class="ec-blog-date">By<span>Mr Selsa</span> / Feb 10, 2022</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ec-blog-block">
+                            <div class="ec-blog-inner">
+                                <div class="ec-blog-image">
+                                    <a href="blog-detail-left-sidebar.html">
+                                        <img class="blog-image" src="assets/images/blog-image/5.jpg"
+                                             alt="Blog" />
+                                    </a>
+                                </div>
+                                <div class="ec-blog-content">
+                                    <div class="ec-blog-cat"><a href="blog-left-sidebar.html">Electronics</a></div>
+                                    <h5 class="ec-blog-title"><a
+                                                href="blog-detail-left-sidebar.html">Curbside fashion Trends: How to Win the Pickup Battle.</a></h5>
+
+                                    <div class="ec-blog-date">By<span>Mr Pawar</span> / Mar 15, 2022</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ec-blog-block">
+                            <div class="ec-blog-inner">
+                                <div class="ec-blog-image">
+                                    <a href="blog-detail-left-sidebar.html">
+                                        <img class="blog-image" src="assets/images/blog-image/6.jpg"
+                                             alt="Blog" />
+                                    </a>
+                                </div>
+                                <div class="ec-blog-content">
+                                    <div class="ec-blog-cat"><a href="blog-left-sidebar.html">Glasses</a></div>
+                                    <h5 class="ec-blog-title"><a
+                                                href="blog-detail-left-sidebar.html">6 fashion Retail Industry Digital Strategies for 2021.</a></h5>
+
+                                    <div class="ec-blog-date">By<span>Mr Natly</span> / Jun 02, 2022</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ec-blog-block">
+                            <div class="ec-blog-inner">
+                                <div class="ec-blog-image">
+                                    <a href="blog-detail-left-sidebar.html">
+                                        <img class="blog-image" src="assets/images/blog-image/7.jpg"
+                                             alt="Blog" />
+                                    </a>
+                                </div>
+                                <div class="ec-blog-content">
+                                    <div class="ec-blog-cat"><a href="blog-left-sidebar.html">Jewellery</a></div>
+                                    <h5 class="ec-blog-title"><a
+                                                href="blog-detail-left-sidebar.html">Why Should be Concerned About Instacart Patents.</a></h5>
+
+                                    <div class="ec-blog-date">By<span>Mr Admin</span> / Feb 10, 2022</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--  Blog Section End -->
 @endsection
 
 
