@@ -1,1 +1,3 @@
-$(function(){$(".knob").knob()});
+$(function () {
+  $(".knob").knob();
+});
